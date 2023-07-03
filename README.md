@@ -14,4 +14,4 @@ $ mvn install
 $ ./run.sh
 ```
 
-That's it! The application natively is served on localhost:8080, and thus API calls can be accessed there.
+That's it! The application natively is served on `localhost:8080`, and thus API calls can be accessed there.
