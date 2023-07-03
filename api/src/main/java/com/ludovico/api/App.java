@@ -16,6 +16,7 @@ public class App {
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
+			// You can really do whatever you want in here...
 		};
 	}
 
