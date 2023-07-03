@@ -1,0 +1,1 @@
+pipenv run python3 app/api/main.py
