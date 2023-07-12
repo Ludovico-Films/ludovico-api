@@ -1,1 +1,0 @@
-strawberry server --port 3000 ./ludovico-api/users/app.py
