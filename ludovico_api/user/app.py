@@ -1,5 +1,6 @@
 import strawberry
 from datetime import date
+from ..lib.db import db
 
 
 @strawberry.type
@@ -41,12 +42,14 @@ class Mutation:
                  email: str,
                  phoneNumber: str) -> User:
         print(f"Adding user:\nu: {username} name: {firstName} {lastName}")
-        return User(username=username,
-                    firstName=firstName,
-                    lastName=lastName,
-                    dob=dob,
-                    email=email,
-                    phoneNumber=phoneNumber)
+        newUser = User(username=username,
+                       firstName=firstName,
+                       lastName=lastName,
+                       dob=dob,
+                       email=email,
+                       phoneNumber=phoneNumber)
+        return newUser
 
 
+db = db.db()
 schema = strawberry.Schema(query=Query, mutation=Mutation)
