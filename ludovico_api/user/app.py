@@ -1,6 +1,8 @@
 import strawberry
 from datetime import date
-from ..lib.db import db
+from lib.db import DB
+
+db = DB(config)
 
 
 @strawberry.type
@@ -48,8 +50,12 @@ class Mutation:
                        dob=dob,
                        email=email,
                        phoneNumber=phoneNumber)
-        return newUser
+        try:
+            db.client.admin.command("Ping")
+        except Exception as e:
+            print(e)
+        finally:
+            return newUser
 
 
-db = db.db()
 schema = strawberry.Schema(query=Query, mutation=Mutation)
