@@ -1,8 +1,5 @@
 from user.app import schema
 from strawberry.asgi import GraphQL
-from lib.config import Config
-
-global config
-config = Config()
+from lib.config import config
 
 app = GraphQL(schema)

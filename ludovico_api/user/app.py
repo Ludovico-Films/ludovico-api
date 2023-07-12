@@ -1,8 +1,7 @@
 import strawberry
-from datetime import date
-from lib.db import DB
-
-db = DB(config)
+from datetime import datetime
+from lib.db import db
+from lib.objUtils import to_dict
 
 
 @strawberry.type
@@ -10,15 +9,27 @@ class User:
     username: str
     firstName: str
     lastName: str
-    dob: date
+    dob: datetime
     email: str
     phoneNumber: str
+
+    @property
+    def __dict__(self):
+        return {
+            "username": self.username,
+            "firstName": self.firstName,
+            "lastName": self.lastName,
+            "dob": self.dob.strftime("%m/%d/%Y, %H:%M:%S"),
+            "email": self.email,
+            "phoneNumber": self.phoneNumber,
+        }
 
 
 @strawberry.type
 class Query:
     @strawberry.field
     def user(self) -> User:
+
         username = "Todd"
         firstName = "Todd"
         lastName = "Selwitz"
@@ -40,7 +51,7 @@ class Mutation:
                  username: str,
                  firstName: str,
                  lastName: str,
-                 dob: date,
+                 dob: datetime,
                  email: str,
                  phoneNumber: str) -> User:
         print(f"Adding user:\nu: {username} name: {firstName} {lastName}")
@@ -50,12 +61,10 @@ class Mutation:
                        dob=dob,
                        email=email,
                        phoneNumber=phoneNumber)
-        try:
-            db.client.admin.command("Ping")
-        except Exception as e:
-            print(e)
-        finally:
-            return newUser
+        print(vars(newUser))
+        info = db.user.insert_one(vars(newUser))
+        print(info)
+        return newUser
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
