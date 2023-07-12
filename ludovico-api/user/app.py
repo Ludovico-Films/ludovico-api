@@ -1,4 +1,3 @@
-from typing import Optional
 import strawberry
 from datetime import date
 
@@ -6,7 +5,7 @@ from datetime import date
 @strawberry.type
 class User:
     username: str
-    firstName: Optional[str]
+    firstName: str
     lastName: str
     dob: date
     email: str
