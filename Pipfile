@@ -8,6 +8,9 @@ strawberry-graphql = {version = "*", extras = ["debug-server"]}
 fastapi = "*"
 uvicorn = "*"
 starlette = "*"
+pymongo = "==3.11"
+dnspython = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
