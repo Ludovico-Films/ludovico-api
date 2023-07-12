@@ -12,7 +12,6 @@ class Config:
         self.MONGO_DB_FRIENDLY_NAME = os.getenv(
             "MONGO_DB_FRIENDLY_NAME", default="1337DB")
         self.MONGO_URI = f"mongodb+srv://{self.MONGO_USERNAME}:{self.MONGO_PASSWORD}@{self.MONGO_DB}.mongodb.net/?retryWrites=true&w=majority"
-        print(self.MONGO_URI)
         self.SCHEMA_NAME = os.getenv('SCHEMA_NAME', default='user')
         self.SERVER_PORT = os.getenv('SERVER_PORT', default='3000')
 
