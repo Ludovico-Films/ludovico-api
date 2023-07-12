@@ -62,8 +62,7 @@ class Mutation:
                        email=email,
                        phoneNumber=phoneNumber)
         print(vars(newUser))
-        info = db.user.insert_one(vars(newUser))
-        print(info)
+        db.user.insert_one(vars(newUser))
         return newUser
 
 
