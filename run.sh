@@ -1,1 +1,1 @@
-pipenv run python3 app/api/main.py
+strawberry server --port 3000 ./ludovico-api/users/app.py
